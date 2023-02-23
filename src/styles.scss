@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+a {
+  color: #0366d6;
+}
+
+code {
+  color: #e01a76;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+textarea {
+  color: rgb(204, 204, 204) !important;
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace !important;
+  background-color: rgb(45, 45, 45) !important;
+  line-height: 1.5 !important;
+  padding: 1em !important;
+  white-space: pre !important;
+  resize: none !important;
+  font-size: 12px !important;
+}

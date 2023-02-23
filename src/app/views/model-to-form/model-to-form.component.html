@@ -1,0 +1,14 @@
+<form [formGroup]="form">
+  <div class="justify-center items-center mt-10 grid grid-cols-12 gap-2">
+    <div class="col-span-6">
+      <label>Your typescript model</label>
+      <textarea class="bg-se-bg-gray-400 text-se-bg-gray-light-400 h-[500px] w-full" spellcheck="false"
+        formControlName="modelControl"></textarea>
+    </div>
+    <div class="col-span-6">
+      <label>Your angular form</label>
+      <textarea class="bg-se-bg-gray-400 text-se-bg-gray-light-400 h-[500px] w-full" spellcheck="false" formControlName="formControl"></textarea>
+    </div>
+  </div>
+</form>
+<button class="p-2 bg-slate-700 text-gray-200 hover:bg-slate-500" (click)="convert()">CONVERT</button>
