@@ -7,6 +7,7 @@ import { ModelToFormComponent } from './views/model-to-form/model-to-form.compon
 import { ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
     AppRoutingModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
