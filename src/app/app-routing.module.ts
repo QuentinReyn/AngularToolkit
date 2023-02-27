@@ -5,7 +5,7 @@ import { ModelToFormComponent } from './views/model-to-form/model-to-form.compon
 
 const routes: Routes = [
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'model-form', component: ModelToFormComponent },
+      { path: 'model-to-form', component: ModelToFormComponent },
 ];
 
 @NgModule({
