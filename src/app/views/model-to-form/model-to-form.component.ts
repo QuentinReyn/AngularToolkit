@@ -13,11 +13,11 @@ import * as htmlParser from 'prettier/parser-html';
 export class ModelToFormComponent implements OnInit {
 
   public currentCount = 0;
-  constructor(private classParserService:ClassParserService){}
+  constructor(private classParserService: ClassParserService) { }
 
-  options: {isHtml:boolean,isClass:boolean,cssClass:string,isGrid:boolean,isMaterial:boolean} = {isHtml:false,isClass:false,cssClass:'',isGrid:false,isMaterial:false};
+  options: { isHtml: boolean, isClass: boolean, cssClass: string, isGrid: boolean, isMaterial: boolean } = { isHtml: false, isClass: false, cssClass: '', isGrid: false, isMaterial: false };
   form: FormGroup = new FormGroup({
-    modelControl:new FormControl(` export class MotherBoardTemplate {
+    modelControl: new FormControl(` export class MotherBoardTemplate {
       Id: number;
       Name: string;
       ConstructorId?: number;
@@ -37,39 +37,41 @@ export class ModelToFormComponent implements OnInit {
       MotherBoards: MotherBoard[];
   }
   `),
-    formControl:new FormControl(""),
-    htmlControl:new FormControl(""),
-    isHtml:new FormControl(false),
-    isLabelClass:new FormControl(false),
-    isInputClass:new FormControl(false),
-    isGrid:new FormControl(false),
-    isMaterial:new FormControl(false),
-    labelCssClass:new FormControl(""),
-    inputCssClass:new FormControl(""),
+    formControl: new FormControl(""),
+    htmlControl: new FormControl(""),
+    isHtml: new FormControl(false),
+    isLabelClass: new FormControl(false),
+    isInputClass: new FormControl(false),
+    isGrid: new FormControl(false),
+    isMaterial: new FormControl(false),
+    labelCssClass: new FormControl(""),
+    inputCssClass: new FormControl(""),
   })
 
   ngOnInit(): void {
-
+    this.form.get('isHtml')?.valueChanges.subscribe(m => {
+      !m ? this.form.get('htmlControl')?.setValue("") : {}
+    });
   }
 
-  convert(){
-    let tt=this.classParserService.extractPropertyNames(this.form.get('modelControl')?.value)
+  convert() {
+    let tt = this.classParserService.extractPropertyNames(this.form.get('modelControl')?.value)
     this.form.patchValue({
       formControl: this.transformPropertiesIntoRow(tt).join('\n')
     })
 
-    if(this.form.get('isHtml')?.value){
+    if (this.form.get('isHtml')?.value) {
       this.form.patchValue({
         htmlControl: prettier.format(this.generateHtml(tt).join('\n'), { parser: 'html', plugins: [htmlParser] })
       })
     }
   }
 
-  generateHtml(properties:string[]){   
+  generateHtml(properties: string[]) {
     const rows: string[] = [];
     console.log(this.form.get('labelCssClass')?.value)
-    properties.forEach((property,index)=>{
-        let row = 
+    properties.forEach((property, index) => {
+      let row =
         `<div>
             <label for="${property}" class="${this.form.get('labelCssClass')?.value}">${property}</label>
             <div class="mt-1 sm:mt-0 sm:col-span-2">
@@ -78,22 +80,22 @@ export class ModelToFormComponent implements OnInit {
                   class="${this.form.get('inputCssClass')?.value}">
               </div>
             </div>
-          </div>`   
+          </div>`
       rows.push(row);
     });
     return rows;
   }
 
-  transformPropertiesIntoRow(properties:string[]){
+  transformPropertiesIntoRow(properties: string[]) {
     const rows: string[] = [];
     const firstRow = 'this.myForm = new FormGroup({'
     rows.push(firstRow);
-    properties.forEach((property,index)=>{
-      if(index !== properties.length - 1){
+    properties.forEach((property, index) => {
+      if (index !== properties.length - 1) {
         let row = `     ${property}: new FormControl('',Validators.required),`
         rows.push(row);
       }
-      else{
+      else {
         let row = `     ${property}: new FormControl('',Validators.required)`
         rows.push(row);
       }
