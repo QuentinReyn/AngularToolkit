@@ -93,7 +93,7 @@ export class ModelToFormComponent implements OnInit {
     const firstRow = 'this.myForm = new FormGroup({'
     rows.push(firstRow);
     properties.forEach((property, index) => {
-      const prefillControl = this.form.get('isPrefill')?.value ? 'this.'+this.form.get('prefillPrefix')?.value+'.'+property : ''
+      const prefillControl = this.form.get('isPrefill')?.value ? 'this.'+this.form.get('prefillPrefix')?.value+'.'+property : `''`
       if (index !== properties.length - 1) {
         let row = `     ${property}: new FormControl(${prefillControl},Validators.required),`
         rows.push(row);
