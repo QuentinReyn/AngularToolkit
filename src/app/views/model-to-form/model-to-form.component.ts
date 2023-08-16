@@ -48,6 +48,7 @@ export class ModelToFormComponent implements OnInit {
     inputCssClass: new FormControl(""),
     isPrefill:new FormControl(false),
     prefillPrefix:new FormControl(""),
+    isRequired:new FormControl(false),
   })
 
   ngOnInit(): void {
@@ -95,7 +96,7 @@ export class ModelToFormComponent implements OnInit {
     properties.forEach((property, index) => {
       const prefillControl = this.form.get('isPrefill')?.value ? 'this.'+this.form.get('prefillPrefix')?.value+'.'+property : `''`
       if (index !== properties.length - 1) {
-        let row = `     ${property}: new FormControl(${prefillControl},Validators.required),`
+        let row = `     ${property}: new FormControl(${prefillControl}${this.form.get('isRequired')?.value ? ',Validators.required':''}),`
         rows.push(row);
       }
       else {
