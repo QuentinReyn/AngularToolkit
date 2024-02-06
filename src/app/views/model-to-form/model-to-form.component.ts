@@ -104,7 +104,7 @@ export class ModelToFormComponent implements OnInit {
         rows.push(row);
       }
     })
-    const lastRow = ')}'
+    const lastRow = '})'
     rows.push(lastRow);
     return rows;
   }

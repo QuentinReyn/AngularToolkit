@@ -1,0 +1,35 @@
+<form [formGroup]="form">
+  <div class="justify-center items-center mt-10 grid grid-cols-12 gap-2">
+    <div class="col-span-12">
+      <section class="flex gap-2 align-middle">
+        <mat-checkbox class="example-margin" formControlName="isPrefill">Prefill control with object (ex:this.yourObject.value)</mat-checkbox>
+        <div class="flex flex-col gap-1">
+          <div>
+            <div class="flex flex-row" *ngIf="form.value.isPrefill">
+              <label>Your object name :</label>
+              <input formControlName="prefillPrefix" class="bg-custom-bg-gray-light-600 ml-1 p-1"
+                placeholder="Ex: myCar">
+            </div>
+          </div>
+          <mat-checkbox class="example-margin" formControlName="isRequired" *ngIf="form.value.isPrefill">With Validators ?</mat-checkbox>
+        </div>
+      </section>
+    </div>
+    <div class="col-span-6">
+      <label>Your json</label>
+      <textarea class="bg-se-bg-gray-400 text-se-bg-gray-light-400 h-[500px] w-full" spellcheck="false"
+        formControlName="modelControl"></textarea>
+    </div>
+    <div class="col-span-6">
+      <label>Your angular form</label>
+      <textarea class="bg-se-bg-gray-400 text-se-bg-gray-light-400 h-[500px] w-full" spellcheck="false"
+        formControlName="formControl"></textarea>
+    </div>
+    <!-- <div class="col-span-12" *ngIf="form.value.htmlControl != ''">
+      <label>Your html form</label>
+      <textarea class="bg-se-bg-gray-400 text-se-bg-gray-light-400 h-[500px] w-full" spellcheck="false"
+        formControlName="htmlControl"></textarea>
+    </div> -->
+  </div>
+</form>
+<button class="p-2 bg-slate-700 text-gray-200 hover:bg-slate-500" (click)="convert()">CONVERT</button>

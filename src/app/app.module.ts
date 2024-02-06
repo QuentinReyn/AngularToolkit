@@ -11,12 +11,14 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatInputModule} from '@angular/material/input';
+import { JsonToFormComponent } from './views/json-to-form/json-to-form.component';
 @NgModule({
   declarations: [
     AppComponent,
     ModelToFormComponent,
     HomeComponent,
-    NavMenuComponent
+    NavMenuComponent,
+    JsonToFormComponent
   ],
   imports: [
     BrowserModule,
